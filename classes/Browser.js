@@ -1,3 +1,5 @@
+//initialize .env file
+require('dotenv').config();
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 
@@ -9,10 +11,10 @@ class Browser {
 
   async launch() {
 
-    if(!PROCESS.ENV.CHROME_DIR){
+    if(!process.env.CHROME_DIR){
       throw new Error('CHROME_DIR Enviroment variable not set');
     }
-    executablePath = PROCESS.ENV.CHROME_DIR;
+    const executablePath = process.env.CHROME_DIR;
     this.browser = await puppeteer.launch({
       headless: false,
       executablePath,
